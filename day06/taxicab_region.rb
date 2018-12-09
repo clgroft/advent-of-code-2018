@@ -3,16 +3,12 @@ centers = File.open("day06/input.txt").each_line.map do |l|
   l.chomp.split(", ").map(&:to_i)
 end
 
-puts "There are #{centers.size} coordinates"
-
 x_coords = centers.map { |p| p[0] }
 x_min = x_coords.min
 x_max = x_coords.max
 y_coords = centers.map { |p| p[1] }
 y_min = y_coords.min
 y_max = y_coords.max
-
-puts "#{x_min} #{x_max} #{y_min} #{y_max}"
 
 # We search in the smallest rectangle containing all the centers.
 # If a point on the boundary of that rectangle is in the "closest" region
@@ -38,11 +34,11 @@ region_size = Hash.new(0)
   end
 end
 
-puts "Infinite regions:"
-infinite_regions.each { |p| puts "#{p[0]}, #{p[1]}" }
-
 puts "Largest region has area #{centers.reject { |p| infinite_regions.include?(p) }.map { |p| region_size[p] }.max}"
 
+# This performs a brute-force search of a rectangle surrounding the given coordinates.
+# A more sophisticated algorithm would address the x- and y-distances separately,
+# since l^1 distance separates neatly into x-distance and y-distance.
 extra_window = (10000 / centers.size).floor
 
 safe_points = 0
