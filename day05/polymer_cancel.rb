@@ -1,21 +1,22 @@
-def processed_size(atoms)
-  resultant = []
+def reduce_atoms(atoms)
+  reduced = []
   atoms.each do |a|
-    if resultant.last == a.swapcase
-      resultant.pop
+    if reduced.last == a.swapcase
+      reduced.pop
     else
-      resultant << a
+      reduced << a
     end
   end
-  resultant.size
+  reduced
 end
 
 atoms = File.read("day05/input.txt").chomp.chars
+initial_reduction = reduce_atoms(atoms)
 
-puts "The resulting molecule has #{processed_size(atoms)} atoms"
+puts "The resulting molecule has #{initial_reduction.size} atoms"
 
-fixed_lengths = ("a".."z").map do |remove_atom|
-  processed_size(atoms.reject { |a| a.downcase == remove_atom })
-end
+shortest_fixed_length = ("a".."z").map do |remove_atom|
+  reduce_atoms(initial_reduction.reject { |a| a.downcase == remove_atom }).size
+end.min
 
-puts "The shortest fixed molecule has #{fixed_lengths.min} atoms"
+puts "The shortest fixed molecule has #{shortest_fixed_length} atoms"
