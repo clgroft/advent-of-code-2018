@@ -1,10 +1,7 @@
 entries = File.open('day04/input.txt').each_line.sort
 
-minutes_asleep = Hash.new(0)
-sleepy_times = {}
 current_guard_id = nil
 when_fell_asleep = nil
-
 guard_minutes_asleep = Hash.new(0)
 
 entries.each do |e|
