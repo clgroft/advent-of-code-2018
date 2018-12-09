@@ -5,7 +5,8 @@ FIELD = []
 
 no_overlaps_yet = Set.new
 
-File.open('day03/input.txt').each do |l|
+# An algorithm based on overlapping intervals would have been much more efficient.
+File.open("day03/input.txt").each_line do |l|
   /#(?<id>\d+) @ (?<x_coord>\d+),(?<y_coord>\d+): (?<width>\d+)x(?<height>\d+)/ =~ l
   x_coord = x_coord.to_i
   y_coord = y_coord.to_i
@@ -29,4 +30,4 @@ File.open('day03/input.txt').each do |l|
   no_overlaps_yet.add(id) unless found_overlap
 end
 
-p no_overlaps_yet
+puts "The claim with no overlap is ID #{no_overlaps_yet.first}"
