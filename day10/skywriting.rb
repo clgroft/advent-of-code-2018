@@ -18,7 +18,6 @@ points = File.open("day10/input.txt").each_line.map do |l|
   Point.new(x_pos.to_i, y_pos.to_i, x_vel.to_i, y_vel.to_i)
 end
 
-puts "There are #{points.size} points"
 wait_time = 10000
 points.each { |p| p.fast_forward(wait_time) }
 
@@ -30,7 +29,6 @@ loop do
   y_poses = points.map(&:y_pos)
   y_min = y_poses.min
   y_max = y_poses.max
-  # puts "x in [#{x_min}, #{x_max}]; y in [#{y_min}, #{y_max}]"
 
   if x_max - x_min < 200 && y_max - y_min < 200
     puts "t = #{wait_time}"
