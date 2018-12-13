@@ -51,27 +51,26 @@ class Cart
   end
 end
 
-grid = nil
+grid = File.open("day13/input.txt") { |f| f.each_line.map(&:chars) }
+
+# Carts are keyed by [column, row] for natural sort order
 carts = {}
-File.open("day13/input.txt") do |f|
-  grid = f.each_line.map(&:chars)
-  grid.each_with_index do |row, j|
-    row.each_with_index do |cell, i|
-      # replace <>^v with --|| and create a cart
-      case cell
-      when "<"
-        carts[[j,i]] = Cart.new(i, j, "<")
-        row[i] = "-"
-      when ">"
-        carts[[j,i]] = Cart.new(i, j, ">")
-        row[i] = "-"
-      when "^"
-        carts[[j,i]] = Cart.new(i, j, "^")
-        row[i] = "|"
-      when "v"
-        carts[[j,i]] = Cart.new(i, j, "v")
-        row[i] = "|"
-      end
+grid.each_with_index do |row, j|
+  row.each_with_index do |cell, i|
+    # replace <>^v with --|| and create a cart
+    case cell
+    when "<"
+      carts[[j,i]] = Cart.new(i, j, "<")
+      row[i] = "-"
+    when ">"
+      carts[[j,i]] = Cart.new(i, j, ">")
+      row[i] = "-"
+    when "^"
+      carts[[j,i]] = Cart.new(i, j, "^")
+      row[i] = "|"
+    when "v"
+      carts[[j,i]] = Cart.new(i, j, "v")
+      row[i] = "|"
     end
   end
 end
