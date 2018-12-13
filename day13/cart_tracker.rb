@@ -15,37 +15,37 @@ class Cart
   def advance
     case dir
     when "<"
-      @x -= 1
+      self.x -= 1
     when ">"
-      @x += 1
+      self.x += 1
     when "^"
-      @y -= 1
+      self.y -= 1
     when "v"
-      @y += 1
+      self.y += 1
     end
   end
 
-  SLASH_TURN = {"<" => "v", "v" => "<", ">" => "^", "^" => ">"}
-  BACKSLASH_TURN = {"<" => "^", "^" => "<", ">" => "v", "v" => ">"}
-  LEFT_TURN = {"<" => "v", "v" => ">", ">" => "^", "^" => "<"}
-  RIGHT_TURN = {"<" => "^", "^" => ">", ">" => "v", "v" => "<"}
+  SLASH_TURN = {"<" => "v", "v" => "<", ">" => "^", "^" => ">"}.freeze
+  BACKSLASH_TURN = {"<" => "^", "^" => "<", ">" => "v", "v" => ">"}.freeze
+  LEFT_TURN = {"<" => "v", "v" => ">", ">" => "^", "^" => "<"}.freeze
+  RIGHT_TURN = {"<" => "^", "^" => ">", ">" => "v", "v" => "<"}.freeze
 
   def turn(grid_char)
     case grid_char
     when "/"
-      @dir = SLASH_TURN[dir]
+      self.dir = SLASH_TURN[dir]
     when "\\"
-      @dir = BACKSLASH_TURN[dir]
+      self.dir = BACKSLASH_TURN[dir]
     when "+"
       case next_plus_turn
       when :left
-        @dir = LEFT_TURN[dir]
-        @next_plus_turn = :straight
+        self.dir = LEFT_TURN[dir]
+        self.next_plus_turn = :straight
       when :straight
-        @next_plus_turn = :right
+        self.next_plus_turn = :right
       when :right
-        @dir = RIGHT_TURN[dir]
-        @next_plus_turn = :left
+        self.dir = RIGHT_TURN[dir]
+        self.next_plus_turn = :left
       end
     end
   end
@@ -71,22 +71,22 @@ File.open("day13/input.txt") do |f|
       when "v"
         carts[[j,i]] = Cart.new(i, j, "v")
         row[i] = "|"
-      else
-        # do nothing
       end
     end
   end
 end
 
 while carts.size > 1
-  curr_positions = carts.keys.sort
-  curr_positions.each do |p|
+  carts.keys.sort.each do |p|
     cart = carts[p]
     next unless cart # could have died to an earlier collision
+
     cart.advance
     cart.turn(grid[cart.y][cart.x])
+
     new_p = cart.position
     carts.delete(p)
+
     if carts[new_p]
       puts "Collision at #{cart.x},#{cart.y}"
       carts.delete(new_p)
