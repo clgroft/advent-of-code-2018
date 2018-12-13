@@ -58,7 +58,6 @@ TRACK_DIRECTIONS = {"<" => "-", ">" => "-", "^" => "|", "v" => "|"}.freeze
 carts = {}
 grid.each_with_index do |row, j|
   row.each_with_index do |cell, i|
-    # replace <>^v with --|| and create a cart
     track = TRACK_DIRECTIONS[cell]
     if track
       carts[[j,i]] = Cart.new(i, j, cell)
