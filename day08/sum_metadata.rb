@@ -24,7 +24,7 @@ class Node
   end
 end
 
-entries = File.read("day08/input.txt").chomp.split(" ").map(&:to_i)
+entries = ARGF.read.chomp.split(" ").map(&:to_i)
 node = Node.new(entries)
 puts "Metadata sum is #{node.sum_all_metadata}"
 puts "Value of root node is #{node.value}"

@@ -1,4 +1,4 @@
-entries = File.open('day04/input.txt').each_line.sort
+entries = ARGF.each_line.sort
 
 current_guard_id = nil
 when_fell_asleep = nil

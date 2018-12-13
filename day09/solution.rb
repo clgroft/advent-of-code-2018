@@ -1,5 +1,4 @@
-line = File.read("day09/input.txt").chomp
-/^(?<num_players>\d+) players; last marble is worth (?<last_score>\d+) points$/ =~ line
+/^(?<num_players>\d+) players; last marble is worth (?<last_score>\d+) points$/ =~ ARGF.read.chomp
 
 num_players = num_players.to_i
 last_score = last_score.to_i * 100

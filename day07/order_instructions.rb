@@ -1,7 +1,7 @@
 require 'set'
 
 dependencies = ("A".."Z").map { |c| [c, Set.new] }.to_h
-File.open("day07/input.txt").each_line do |l|
+ARGF.each_line do |l|
   /^Step (?<dependency>.) must be finished before step (?<next_step>.) can begin\./ =~ l
   dependencies[next_step].add(dependency)
 end

@@ -10,7 +10,7 @@ def reduce_atoms(atoms)
   reduced
 end
 
-atoms = File.read("day05/input.txt").chomp.chars
+atoms = ARGF.read.chomp.chars
 initial_reduction = reduce_atoms(atoms)
 
 puts "The resulting molecule has #{initial_reduction.size} atoms"

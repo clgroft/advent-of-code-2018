@@ -1,5 +1,5 @@
 require "set"
-centers = File.open("day06/input.txt").each_line.map do |l|
+centers = ARGF.each_line.map do |l|
   l.chomp.split(", ").map(&:to_i)
 end
 

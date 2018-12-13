@@ -1,4 +1,4 @@
-entries = File.open("day04/input.txt").each_line.sort
+entries = ARGF.each_line.sort
 
 minutes_asleep = Hash.new(0)
 sleepy_times = {}

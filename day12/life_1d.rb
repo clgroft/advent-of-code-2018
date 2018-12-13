@@ -1,16 +1,14 @@
 require 'set'
 
-curr_state = nil
-$conversion_rules = Hash.new
+/^initial state: (?<init_line>[#.]*)$/ =~ ARGF.readline
+curr_state = Set.new(init_line.chars.each_with_index.select { |c, i| c == "#" }.map { |a| a[1] })
 
-File.open("day12/input.txt") do |f|
-  /^initial state: (?<init_line>[#.]*)$/ =~ f.readline
-  curr_state = Set.new(init_line.chars.each_with_index.select { |c, i| c == "#" }.map { |a| a[1] })
-  f.readline
-  f.each_line do |l|
-    /^(?<input>[.#]{5}) => (?<result>[.#])$/ =~ l
-    $conversion_rules[input] = result
-  end
+ARGF.readline
+
+$conversion_rules = Hash.new
+ARGF.each_line do |l|
+  /^(?<input>[.#]{5}) => (?<result>[.#])$/ =~ l
+  $conversion_rules[input] = result
 end
 
 def window(prev_state, i)

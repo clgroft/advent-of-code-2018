@@ -1,4 +1,4 @@
-lines = File.open("day02/input.txt").each_line.map { |l| l.chomp.chars }
+lines = ARGF.each_line.map { |l| l.chomp.chars }
 
 # A bit inefficient since it compares lines to themselves and checks some pairs twice,
 # but only by a constant factor.

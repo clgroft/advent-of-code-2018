@@ -6,7 +6,7 @@ FIELD = []
 no_overlaps_yet = Set.new
 
 # An algorithm based on overlapping intervals would have been much more efficient.
-File.open("day03/input.txt").each_line do |l|
+ARGF.each_line do |l|
   /#(?<id>\d+) @ (?<x_coord>\d+),(?<y_coord>\d+): (?<width>\d+)x(?<height>\d+)/ =~ l
   x_coord = x_coord.to_i
   y_coord = y_coord.to_i

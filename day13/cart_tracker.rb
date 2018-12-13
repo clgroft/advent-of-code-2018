@@ -51,7 +51,7 @@ class Cart
   end
 end
 
-grid = File.open("day13/input.txt") { |f| f.each_line.map(&:chars) }
+grid = ARGF.each_line.map(&:chars)
 
 # Carts are keyed by [row, column] = [j,i] for natural sort order
 TRACK_DIRECTIONS = {"<" => "-", ">" => "-", "^" => "|", "v" => "|"}.freeze

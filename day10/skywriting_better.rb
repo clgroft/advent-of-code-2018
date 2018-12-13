@@ -13,7 +13,7 @@ class Point
   end
 end
 
-points = File.open("day10/input.txt").each_line.map do |l|
+points = ARGF.each_line.map do |l|
   /^position=\s*<(?<x_pos>.*?),\s+(?<y_pos>.*?)> velocity=\s*<(?<x_vel>.*?),\s+(?<y_vel>.*?)>$/ =~ l
   Point.new(x_pos.to_i, y_pos.to_i, x_vel.to_i, y_vel.to_i)
 end

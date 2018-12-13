@@ -11,7 +11,7 @@ class FuelCellGrid
   end
 end
 
-grid = FuelCellGrid.new(9810)
+grid = FuelCellGrid.new(ARGV[0].to_i)
 values = (1..300).map { |x| (1..300).map { |y| grid.power_level(x,y) } }
 
 max_power_level = -50
