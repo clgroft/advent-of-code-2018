@@ -1,3 +1,6 @@
+# Part 2 solution.  It was convenient to explicitly index the nodes so I would
+# know when to stop looking for the key sequence and start generating more
+# recipes again.
 class Node
   attr_accessor :score, :next, :prev, :index
 
@@ -20,13 +23,14 @@ end
 first_recipe = Node.new(3)
 last_recipe = Node.new(7)
 first_recipe.add_node(last_recipe)
-checking_recipe = first_recipe
 
 elf1_recipe = first_recipe
 elf2_recipe = last_recipe
 num_recipes = 2
 
 key_sequence = ARGV[0].chars.map(&:to_i)
+checking_recipe = first_recipe
+
 loop do
   new_recipes = (elf1_recipe.score + elf2_recipe.score).to_s.chars.map(&:to_i)
   num_recipes += new_recipes.size

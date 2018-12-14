@@ -1,3 +1,6 @@
+# An initial attempt.  Technically correct, but slowed down a lot as the number
+# of recipes increased.
+
 recipes = [3,7]
 elf1_idx = 0
 elf2_idx = 1
