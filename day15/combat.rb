@@ -1,4 +1,3 @@
-require 'byebug'
 require 'set'
 
 def next_steps(grid, y, x)
